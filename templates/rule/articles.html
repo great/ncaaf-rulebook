@@ -1,0 +1,21 @@
+{% load markup %}
+<html>
+<head>
+<style type="text/css">
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+        $("h3").click(function() {
+                $(this).next().toggle("fast");
+        });
+});
+</script>
+</head>
+<body>
+{% for article in articles %}
+	<h3>Article {{article.meta.article_id}}: {{article.title}}</h3>
+	{{article.content|markdown}}
+{% endfor %}
+</body>
+</html>

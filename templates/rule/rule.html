@@ -1,0 +1,15 @@
+<html>
+<head>
+</head>
+<body>
+<h1>{{section.get_rule.index}}. {{section.get_rule.text}}</h1>
+<table>
+{% for section in sections %}
+	<tr>
+		<td>Section {{section.index}}.</td>
+		<td>{{section.text}}</td>
+	</tr>
+{% endfor %}
+</table>
+</body>
+</html>

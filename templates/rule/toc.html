@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+
+{% for chapter in chapters %}
+	{% if chapter.level == 'rule' %}
+		<h2>Rule {{chapter.meta.rule_id}}. {{chapter.subject}}</h2>
+		<hr />
+	{% endif %}
+	{% if chapter.level == 'section' %}
+		<h3>Section {{chapter.meta.section_id}}. {{chapter.subject}}</h3>
+	{% endif %}
+	{% if chapter.level == 'article' %}
+		<h4>Article {{chapter.meta.article_id}}. {{chapter.subject}}</h4>
+	{% endif %}
+{% endfor %}
+
+</body>
+</html>

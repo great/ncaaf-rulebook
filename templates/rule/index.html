@@ -1,0 +1,86 @@
+<html>
+<head>
+<style type="text/css">
+.st {
+	font-weight:bold;
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+jQuery.fn.editTitle = function() {
+	var $article = $(this);
+	var $edit = $($('#text_input').html());
+	var $title = $article.text();
+	$article.text('');
+	$article.append($edit)
+	.find('input:text[name=title]').val($title)
+	.end().find('input:button[name=dismiss]').click(function() {
+		console.log('dismiss');
+		console.log($(this).text());
+	}).end().find('input:button[name=cancel]').click(function() {
+		console.log('cancel');
+		$article.html('');
+	});
+};
+
+$(function() {
+	$('#rule1').click(function() { alert('hello, world!'); });
+	$('.article li span').click(function() {
+		var $article = $(this);
+		var $edit = $($('#text_input').html());
+		var $title = $article.text();
+		$article.text('');
+		$article.append($edit)
+		.find('input:text[name=title]').val($title)
+		.end().find('input:button[name=dismiss]').click(function() {
+			console.log('dismiss');
+			console.log($(this).text());
+		}).end().find('input:button[name=cancel]').click(function() {
+			console.log('cancel');
+			$article.html('');
+		});
+
+		/*
+		$(this).each(function(i) {
+			console.log($(this).html());
+		});
+		*/
+	}).end().parent().click(function() {
+		console.log('clicked parent. reset edit.');
+	});
+
+	$("h2.section").click(function() {
+		$(this).next().toggle("fast");
+	});
+	//$("li").prepend(":");
+});
+
+</script>
+</head>
+<body>
+{% for rule in toc %}
+<h1 id="rule1"><span class="seq">Rule {{rule.seq}}.</span> <span class="subject">{{rule.subject}}</span></h1>
+<hr />
+	{% for section in rule.children %}
+	<h2 class="section"><span class="seq">Section {{section.seq}}.</span> <span class="subject">{{section.subject}}</span></h2>
+	<ul class="article">
+		{% for article in section.children %}
+		<li class="atc"><span class="seq">Article {{article.seq}}.</span>
+			<span class="subject">{{article.subject}}</span>
+			<a href="/article/{{article.lang}}/{{article.meta.id}}">[view]</a>
+			<input type="hidden" name="title_id" value="{{article.id}}" />
+		</li>
+		{% endfor %}
+	</ul>
+	{% endfor %}
+{% endfor %}
+<form name="edit">
+	<input type="hidden" name="edit_text" />
+</form>
+<script id="text_input" type="text/template">
+<input type="text" name="title" />
+<input type="button" name="dismiss" value="dismiss" />
+<input type="button" name="cancel" value="cancel" />
+</script>
+</body>
+</html>

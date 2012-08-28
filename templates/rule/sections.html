@@ -1,0 +1,18 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Rule {{items.rule.key}}. {{items.rule.subject}}</h1>
+<hr />
+{% for section in items.children %}
+	{% if section.level == 'section' %}
+		<h3>Section {{section.seq}}. {{section.subject}}</h3>
+	{% endif %}
+	{% if section.level == 'article' %}
+		<h4>Article {{section.seq}}. {{section.subject}}</h4>
+	{% endif %}
+{% endfor %}
+
+</body>
+</html>
