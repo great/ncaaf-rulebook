@@ -69,7 +69,6 @@ class Article(Model):
 class Penalty(Model):
 	pass
 
-
 class Picture(Model):	# or, generally, objects?
 	pass
 '''
