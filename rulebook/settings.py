@@ -9,6 +9,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# should change relative path way
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
