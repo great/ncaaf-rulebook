@@ -1,5 +1,13 @@
 # Django settings for rulebook project.
 
+import os.path
+
+# 2013.10.17
+# http://stackoverflow.com/questions/4666973/how-to-extract-a-substring-from-inside-a-string-in-python
+SETTINGS_ROOT = os.path.dirname(os.path.realpath(__file__))
+PROJECT_ROOT = SETTINGS_ROOT[0:SETTINGS_ROOT.rfind('/')]
+PROJECT_NAME = SETTINGS_ROOT[SETTINGS_ROOT.rfind('/') + 1:]
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -13,7 +21,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/Users/greatkit/org.ncaa.football/rulebook/repository.sqlite3', 
+        'NAME': os.path.join(PROJECT_ROOT, 'repository.sqlite3'), 
     }
 }
 
@@ -45,7 +53,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/Users/greatkit/org.ncaa.football/rulebook/media/'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -106,7 +114,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/greatkit/org.ncaa.football/rulebook/templates',
+    os.path.join(PROJECT_ROOT, 'templates'),
 )
 
 INSTALLED_APPS = (
